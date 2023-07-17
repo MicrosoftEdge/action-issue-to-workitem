@@ -1,0 +1,22 @@
+{
+  "name": "action-issue-to-workitem",
+  "version": "1.0.0",
+  "description": "Create a Work Item on an Azure Board when a GitHub Issue is created or updated",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicrosoftEdge/action-issue-to-workitem.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/MicrosoftEdge/action-issue-to-workitem/issues"
+  },
+  "homepage": "https://github.com/MicrosoftEdge/action-issue-to-workitem#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1",
+    "azure-devops-node-api": "^10.1.0"
+  }
+}

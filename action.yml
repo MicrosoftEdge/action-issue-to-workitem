@@ -1,0 +1,37 @@
+name: "GitHub Issues to Azure DevOps"
+description: "This action creates an ADO work item for a GitHub issue or pull request"
+author: "MicrosoftEdge"
+branding:
+  icon: "refresh-cw"
+  color: "yellow"
+inputs:
+  label:
+    description: 'Only run the action is this label is present on the issue or pull request'
+    required: false
+  ado_organization:
+    description: 'The name of the ADO organization where the work item should be created'
+    required: true
+  ado_project:
+    description: 'The name of the project within the ADO organization'
+    required: true
+  ado_tags:
+    description: 'A list of tags to add to the newly created work item, separated by semi-colon (;)'
+    required: false
+  parent_work_item:
+    description: 'The number of a work item to use as a parent for the newly created work item'
+    required: false
+  ado_area_path:
+    description: 'The area path under which the work item should be created'
+    required: true
+  ado_work_item_type:
+    description: 'The type of work item to create. Defaults to Bug'
+    required: false
+  ado_dont_check_if_exist:
+    description: 'Do not check if a work item that contains the same issue or PR number already exists to avoid re-creating it. Defaults to false, which means the action checks to avoid re-creating.'
+    required: false
+outputs:
+  id:
+    description: "id of work item created"
+runs:
+  using: "node12"
+  main: "index.js"
