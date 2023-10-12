@@ -42,6 +42,10 @@ Common values: Task, Bug, Deliverable, Scenario.
 
 Set this to true to avoid checking and just always create a work item instead.
 
+### `ado_product`
+
+**Optional**. The product name to use for the ADO work item.
+
 ## Outputs
 
 ### `id`
@@ -53,7 +57,7 @@ The id of the Work Item created or updated
 The following environment variables need to be provided to the action:
 
 * `ado_token`: an [Azure Personal Access Token](https://docs.microsoft.com/azure/devops/organizations/accounts/use-personal-access-tokens-to-authenticate) with "read & write" permission for Work Item.
-* `github_token`: a GitHub Personal Access Token with "repo" permissions.
+* `github_token`: a GitHub Personal Access Token with "repo" permissions. You can use the automatic token secret that GitHub generates at the start of each workflow job: `"${{ secrets.GITHUB_TOKEN }}"`
 
 ## Example usage
 
@@ -72,7 +76,7 @@ jobs:
       - uses: MicrosoftEdge/action-issue-to-workitem@main
         env:
           ado_token: "${{ secrets.ADO_PERSONAL_ACCESS_TOKEN }}"
-          github_token: "${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
         with:
           label: 'tracked'
           ado_organization: 'ado_organization_name'

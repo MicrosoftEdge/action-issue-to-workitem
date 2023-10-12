@@ -29,6 +29,9 @@ inputs:
   ado_dont_check_if_exist:
     description: 'Do not check if a work item that contains the same issue or PR number already exists to avoid re-creating it. Defaults to false, which means the action checks to avoid re-creating.'
     required: false
+  ado_product:
+    description: 'The product name to use for the ADO work item.'
+    required: false
 outputs:
   id:
     description: "id of work item created"

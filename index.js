@@ -169,6 +169,14 @@ async function create(payload, adoClient) {
 		value: core.getInput('ado_area_path'),
 	});
 
+	if (core.getInput('ado_product')) {
+		patchDocument.push({
+			op: "add",
+			path: "/fields/OSG.Product",
+			value: core.getInput('ado_product'),
+		});
+	}
+
 	let workItemSaveResult = null;
 
 	try {
