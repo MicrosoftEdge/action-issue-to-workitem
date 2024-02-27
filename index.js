@@ -88,8 +88,13 @@ async function formatDescription(payload) {
 	const isIssue = payload.issue != null;
 
 	const octokit = new github.GitHub(process.env.github_token);
+
+	// ?**REMOVED**
+	// Remove potential tokens found in the issue or PR body to avoid errors when creating work items.
+	const safeBody = issueOrPr.body.replace(/\?jwt=[^"]+/g, "");
+
 	const bodyWithMarkdown = await octokit.markdown.render({
-		text: issueOrPr.body || "",
+		text: safeBody || "",
 		mode: "gfm",
 		context: payload.repository.full_name
 	});
