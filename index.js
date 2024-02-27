@@ -89,7 +89,7 @@ async function formatDescription(payload) {
 
 	const octokit = new github.GitHub(process.env.github_token);
 	const bodyWithMarkdown = await octokit.markdown.render({
-		text: safeBody || "",
+		text: issueOrPr.body || "",
 		mode: "gfm",
 		context: payload.repository.full_name
 	});
