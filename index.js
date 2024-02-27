@@ -89,8 +89,8 @@ async function formatDescription(payload) {
 
 	const octokit = new github.GitHub(process.env.github_token);
 
-	// ?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDkwMjk1OTQsIm5iZiI6MTcwOTAyOTI5NCwicGF0aCI6Ii8xNDIxNjIvMzA4MDkxNTkwLTMwOGMyNWZlLWZlZjYtNDVlYy1hMzJjLWJlYjZiNGFhZmJjOC5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwMjI3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDIyN1QxMDIxMzRaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zODg5NzE2YTlkZTRmY2UxOGJiOTI1Yjg1MzQzNzVkNjgyYWZjOTY4OWUxMzQzOTQxYWM0MzUzMGNiMThmNTIwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.8w3CjRdUUeWMOrGJ3WinlKA1T7JH7U2YsZy0sfI-02g"
 	// Remove potential tokens found in the issue or PR body to avoid errors when creating work items.
+	console.log('Removing potential tokens');
 	const safeBody = issueOrPr.body.replace(/\?jwt=[^"]+/g, "");
 
 	const bodyWithMarkdown = await octokit.markdown.render({
@@ -98,6 +98,11 @@ async function formatDescription(payload) {
 		mode: "gfm",
 		context: payload.repository.full_name
 	});
+	console.log("-----------");
+	console.log(issueOrPr.body);
+	console.log("-----------");
+	console.log(safeBody);
+	console.log("-----------");
 
 	return `
 		<hr>
