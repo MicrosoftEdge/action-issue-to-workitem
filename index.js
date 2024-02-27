@@ -112,7 +112,7 @@ async function formatDescription(payload) {
 		</em>
 		<hr>
 		<br>
-		${bodyWithMarkdown.data}
+		${safeBody}
 	`;
 }
 
