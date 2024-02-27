@@ -98,12 +98,6 @@ async function formatDescription(payload) {
 	console.log('Removing potential tokens');
 	const safeBody = bodyWithMarkdown.data.replace(/\?jwt=[^"]+/g, "");
 
-	console.log("-----------");
-	console.log(bodyWithMarkdown.data);
-	console.log("-----------");
-	console.log(safeBody);
-	console.log("-----------");
-
 	return `
 		<hr>
 	  <em>This work item is a mirror of the GitHub
