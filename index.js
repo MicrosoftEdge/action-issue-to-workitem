@@ -113,8 +113,15 @@ async function formatDescription(payload) {
 async function create(payload, adoClient) {
 	const issueOrPr = payload.issue || payload.pull_request;
 	const botMessage = await formatDescription(payload);
+	
+	const tagsList = issueOrPr.labels.map(label => label.name);
+	if (core.getInput("ado_tags")) {
+		tagsList.push(core.getInput("ado_tags"));
+	}
 	const shortRepoName = payload.repository.full_name.split("/")[1];
-	const tags = core.getInput("ado_tags") ? core.getInput("ado_tags") + ";" + shortRepoName : shortRepoName;
+	tagsList.push(shortRepoName);
+	const tags = tagsList.join(";");
+	
 	const itemType = core.getInput("ado_work_item_type") ? core.getInput("ado_work_item_type") : "Bug";
 
 	console.log(`Starting to create a ${itemType} work item for GitHub issue or PR #${issueOrPr.number}`);
